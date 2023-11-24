@@ -1,9 +1,6 @@
 import java.util.*;
 
 public class Ambiente {
-
-    var a = "lucas";
-
     private String descricao;
     private HashMap<String, Ambiente> saidas;
 
