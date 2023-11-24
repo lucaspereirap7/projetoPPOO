@@ -4,15 +4,13 @@ public abstract class Ambiente {
 
     private String descricao;
     private int ID;
-    //Item item;
+
     private HashMap<String, Ambiente> saidas;
 
-    //public Ambiente(String descricao, int ID, Item item) {
     public Ambiente(String descricao, int ID) {
         this.descricao = descricao;
         this.ID = ID;
         saidas = new HashMap<String, Ambiente>();
-        //this.item = item;
     }
 
     public void ajustarSaida(String direcao, Ambiente ambiente) {

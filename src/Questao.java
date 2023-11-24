@@ -27,7 +27,7 @@ public class Questao {
     }
 
     public boolean acertou(String resposta){
-        if(resposta.equals(this.resposta)){ //se a resposta do jogador for igual à resposta da pergunta, então ele acertou
+        if(this.resposta.equals(resposta)){ //se a resposta do jogador for igual à resposta da pergunta, então ele acertou
             return true;
         }
         return false;
