@@ -1,12 +1,18 @@
 import java.util.*;
 
-public class Ambiente {
+public abstract class Ambiente {
+
     private String descricao;
+    private int ID;
+    //Item item;
     private HashMap<String, Ambiente> saidas;
 
-    public Ambiente(String descricao) {
+    //public Ambiente(String descricao, int ID, Item item) {
+    public Ambiente(String descricao, int ID) {
         this.descricao = descricao;
+        this.ID = ID;
         saidas = new HashMap<String, Ambiente>();
+        //this.item = item;
     }
 
     public void ajustarSaida(String direcao, Ambiente ambiente) {
@@ -15,6 +21,10 @@ public class Ambiente {
 
     public Ambiente getAmbiente(String direcao) {
         return saidas.get(direcao);
+    }
+
+    public int getIDAmbiente(){
+        return ID;
     }
 
     public String getSaida(){
@@ -28,5 +38,12 @@ public class Ambiente {
     public String getDescricao() {
         return descricao;
     }
+
+    public int getID(){
+        return ID;
+    }
+
+    public abstract void setFoiSorteado(boolean foiSorteado);
+    public abstract boolean getFoiSorteado();
 
 }
