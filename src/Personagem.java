@@ -1,13 +1,12 @@
-public class Personagem {
+public abstract class Personagem {
 
     private String nomePersonagem;
 
     public Personagem(String nomePersonagem) {
-        nomePersonagem = this.nomePersonagem;
+        this.nomePersonagem = nomePersonagem;
     }
 
-    //Método criado para poder estar retornando o nome do Personagem
-    public String getNomePersonagem(){
+    public String getNome(){
         return nomePersonagem;
     }
 }

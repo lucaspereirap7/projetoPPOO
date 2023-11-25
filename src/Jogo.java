@@ -23,70 +23,71 @@ public class Jogo {
         analisador = new Analisador();
         listaDeQuestoes = new ArrayList<>();
         lerArquivo("Perguntas.txt");
-        sortearAmbientesQueTeraoItens();
+        sortearSalaQueTeraoItens();
         sortearCorredoresQueTeraoGuardas();
     }
 
-    private void lerArquivo(String nomeArquivo){ //este método é responsável por fazer a leitura do arquivo e armazenar as perguntas e repostas dentro do ArrayList  
-        try(BufferedReader arq = new BufferedReader(new FileReader(nomeArquivo))){
-            //BufferedReader arq = new BufferedReader(new FileReader(nomeArquivo));
+    private void lerArquivo(String nomeArquivo) { // este método é responsável por fazer a leitura do arquivo e
+                                                  // armazenar as perguntas e repostas dentro do ArrayList
+        try (BufferedReader arq = new BufferedReader(new FileReader(nomeArquivo))) {
+            // BufferedReader arq = new BufferedReader(new FileReader(nomeArquivo));
 
-            String linha = arq.readLine(); //o método readLine retorna uma string com a linha lida do arquivo
+            String linha = arq.readLine(); // o método readLine retorna uma string com a linha lida do arquivo
 
-            while(linha != null){
+            while (linha != null) {
                 String[] campos = linha.split(",");
 
                 Questao questao = new Questao(campos[0], campos[1]);
 
                 listaDeQuestoes.add(questao);
 
-                linha = arq.readLine(); //a variável linha receberá valor null quando o arquivo chegar ao fim
+                linha = arq.readLine(); // a variável linha receberá valor null quando o arquivo chegar ao fim
             }
-            //arq.close();
-        }
-        catch(FileNotFoundException e){
+            // arq.close();
+        } catch (FileNotFoundException e) {
             System.out.println("Impossível abrir o arquivo " + nomeArquivo);
-        }
-        catch(IOException e){
+        } catch (IOException e) {
             System.out.println("Problema na leitura do arquivo " + nomeArquivo);
-        }                              
+        }
     }
 
-    public List<Questao> getQuestoes(){
+    public List<Questao> getQuestoes() {
         return Collections.unmodifiableList(listaDeQuestoes);
     }
 
-    private void sortearAmbientesQueTeraoItens(){ //sorteia 5 ambientes que terão Itens e Tarefas a serem realizadas
+    private void sortearSalaQueTeraoItens() { // sorteia 5 ambientes que terão Itens e Tarefas a serem realizadas
         Random random = new Random();
         ArrayList<Integer> numerosSorteados = new ArrayList<>();
-        while (numerosSorteados.size() < 5) { //sorteia números pares dentro do intervalo [2, 26]
+        while (numerosSorteados.size() < 5) { // sorteia números pares dentro do intervalo [2, 26]
             int numeroAleatorio = 2 + 2 * random.nextInt(12);
             if (!numerosSorteados.contains(numeroAleatorio)) {
                 numerosSorteados.add(numeroAleatorio);
             }
         }
-        for(int i = 0; i < numerosSorteados.size(); i++) {
+        for (int i = 0; i < numerosSorteados.size(); i++) {
             int num = numerosSorteados.get(i);
-            for(int j = 0; j < listaDeSalas.size(); j++) {
+            for (int j = 0; j < listaDeSalas.size(); j++) {
                 Ambiente ambiente = listaDeSalas.get(j);
-                if(ambiente.getID() == (num)){
+                if (ambiente.getID() == (num)) {
                     ambiente.setFoiSorteado(true);
                 }
             }
         }
-        //retirar esse for depois
+        // retirar esse for depois
         for (Ambiente a : listaDeSalas) {
-            if(a.getFoiSorteado() == true)
-            System.out.println("Foi sorteado o ambiente " + a.getDescricao());
+            if (a.getFoiSorteado() == true)
+                System.out.println("Foi sorteado o ambiente " + a.getDescricao());
         }
     }
 
-    private void sortearCorredoresQueTeraoGuardas(){ //apenas dois corredores (superiores e/ou inferiores) terão guardas
+    private void sortearCorredoresQueTeraoGuardas() { // apenas dois corredores (superiores e/ou inferiores) terão
+                                                      // guardas
         ArrayList<Integer> sorteados = new ArrayList<>();
         Random random = new Random();
-        while(sorteados.size() < 2){ //este while irá sortear dois valores (3, 5, 7 ou 9) que correspondem aos ID's dos corredores que podem ter guardas
+        while (sorteados.size() < 2) { // este while irá sortear dois valores (3, 5, 7 ou 9) que correspondem aos ID's
+                                       // dos corredores que podem ter guardas
             int numeroAleatorio = (2 * random.nextInt(3)) + 3;
-            if(!sorteados.contains(numeroAleatorio)){
+            if (!sorteados.contains(numeroAleatorio)) {
                 sorteados.add(numeroAleatorio);
             }
         }
@@ -95,18 +96,18 @@ public class Jogo {
             int num = sorteados.get(i);
             for (int j = 0; j < listaDeCorredores.size(); j++) {
                 Ambiente ambiente = listaDeCorredores.get(j);
-                if(ambiente.getID() == (num)){
+                if (ambiente.getID() == (num)) {
                     ambiente.setFoiSorteado(true);
                 }
             }
         }
-        //retirar esse for depois
-        for(Corredor a: listaDeCorredores){
-            if(a.getFoiSorteado()){
+        // retirar esse for depois
+        for (Corredor a : listaDeCorredores) {
+            if (a.getFoiSorteado()) {
                 System.out.println("Foi sorteado o corredor: " + a.getDescricao());
             }
         }
-        
+
     }
 
     private void criarAmbientes() {
@@ -114,10 +115,10 @@ public class Jogo {
         Sala comunicacoes, seguranca, motorSuperior, motorInferior, reator;
         Corredor corredorSD, corredorSE, corredorID, corredorIE, corredorPrinc, corredorAdm, corredorReator;
 
-        //Salas
+        // Salas
         prisao = new Sala("na prisao", 1, null);
         listaDeSalas.add(prisao);
-        refeitorio = new Sala("no refeitorio", 2,  new Item("Mantimentos", "Pegue mantimentos no refetorio"));
+        refeitorio = new Sala("no refeitorio", 2, new Item("Mantimentos", "Pegue mantimentos no refetorio"));
         listaDeSalas.add(refeitorio);
         escudos = new Sala("na sala de escudos", 4, new Item("Colete", "Pegue o colete nos escudos"));
         listaDeSalas.add(escudos);
@@ -129,25 +130,28 @@ public class Jogo {
         listaDeSalas.add(o2);
         eletrica = new Sala("na sala de elétrica", 12, new Item("Bateria", "Colete uma bateria na eletrica"));
         listaDeSalas.add(eletrica);
-        administracao = new Sala("na sala de administracao", 14, new Item("Codigo de segurança", "Pegue o codigo de segurança na"));
+        administracao = new Sala("na sala de administracao", 14,
+                new Item("Codigo de segurança", "Pegue o codigo de segurança na"));
         listaDeSalas.add(administracao);
         garagem = new Sala("na garagem", 16, new Item("Chave da nave", "Pegue a chave da nave na garagem"));
         listaDeSalas.add(garagem);
         comunicacoes = new Sala("na sala de comunicacoes", 18, new Item("Radio", "Peg"));
         listaDeSalas.add(comunicacoes);
-        seguranca = new Sala("na sala de seguranca", 20, new Item("Lanterna", "Colete uma lanterna na sala de seguranca"));
+        seguranca = new Sala("na sala de seguranca", 20,
+                new Item("Lanterna", "Colete uma lanterna na sala de seguranca"));
         listaDeSalas.add(seguranca);
         motorSuperior = new Sala("no motor superior", 22, new Item("Gasolina", "Pegue a gasolina no motor superior"));
         listaDeSalas.add(motorSuperior);
-        motorInferior = new Sala("no motor inferior", 24, new Item("Chave de fenda", "Pegue uma chave de fenda no motor inferior"));
+        motorInferior = new Sala("no motor inferior", 24,
+                new Item("Chave de fenda", "Pegue uma chave de fenda no motor inferior"));
         listaDeSalas.add(motorInferior);
         reator = new Sala("no reator", 26, new Item("Motor", "Pegue o motor no reator"));
         listaDeSalas.add(reator);
 
-        //Corredores
-        corredorSD = new Corredor("no corredor superior direito",3);
+        // Corredores
+        corredorSD = new Corredor("no corredor superior direito", 3);
         listaDeCorredores.add(corredorSD);
-        corredorSE = new Corredor("no corredor superior esquerdo",5);
+        corredorSE = new Corredor("no corredor superior esquerdo", 5);
         listaDeCorredores.add(corredorSE);
         corredorID = new Corredor("no corredor inferior direito", 7);
         listaDeCorredores.add(corredorID);
@@ -159,10 +163,10 @@ public class Jogo {
         listaDeCorredores.add(corredorAdm);
         corredorReator = new Corredor("no corredor do reator", 15);
         listaDeCorredores.add(corredorReator);
-                
-        //ajustando as saídas
+
+        // ajustando as saídas
         prisao.ajustarSaida("refeitorio", refeitorio);
-        
+
         refeitorio.ajustarSaida("esquerda", corredorSE);
         refeitorio.ajustarSaida("direita", corredorSD);
         refeitorio.ajustarSaida("baixo", corredorAdm);
@@ -170,7 +174,7 @@ public class Jogo {
 
         escudos.ajustarSaida("direita", corredorSE);
         escudos.ajustarSaida("baixo", corredorPrinc);
-        
+
         navegacao.ajustarSaida("direita", corredorPrinc);
         navegacao.ajustarSaida("reator", reator);
 
@@ -195,7 +199,7 @@ public class Jogo {
         reator.ajustarSaida("navegacao", navegacao);
 
         seguranca.ajustarSaida("direita", corredorReator);
-        
+
         comunicacoes.ajustarSaida("baixo", corredorID);
         comunicacoes.ajustarSaida("garagem", garagem);
 
@@ -206,23 +210,23 @@ public class Jogo {
 
         corredorSD.ajustarSaida("esquerda", refeitorio);
         corredorSD.ajustarSaida("direita", motorSuperior);
-        
+
         corredorID.ajustarSaida("direita", motorInferior);
         corredorID.ajustarSaida("cima", comunicacoes);
         corredorID.ajustarSaida("esquerda", garagem);
 
         corredorSE.ajustarSaida("esquerda", escudos);
         corredorSE.ajustarSaida("direita", refeitorio);
-        
+
         corredorIE.ajustarSaida("direita", garagem);
         corredorIE.ajustarSaida("esquerda", armas);
-        corredorIE.ajustarSaida("cima", eletrica);        
+        corredorIE.ajustarSaida("cima", eletrica);
 
         corredorReator.ajustarSaida("esquerda", seguranca);
         corredorReator.ajustarSaida("direita", reator);
         corredorReator.ajustarSaida("cima", motorSuperior);
         corredorReator.ajustarSaida("baixo", motorInferior);
-        
+
         corredorPrinc.ajustarSaida("cima", escudos);
         corredorPrinc.ajustarSaida("baixo", armas);
         corredorPrinc.ajustarSaida("esquerda", navegacao);
@@ -231,13 +235,13 @@ public class Jogo {
         corredorAdm.ajustarSaida("baixo", garagem);
         corredorAdm.ajustarSaida("cima", refeitorio);
         corredorAdm.ajustarSaida("esquerda", administracao);
-        
+
         ambienteAtual = prisao; // o jogo comeca dentro da prisão
     }
 
     public void jogar() {
         imprimirBoasVindas();
-        //boolean terminado = false;
+        // boolean terminado = false;
         while (!terminado) {
             Comando comando = analisador.pegarComando();
             terminado = processarComando(comando);
@@ -248,7 +252,8 @@ public class Jogo {
     private void imprimirBoasVindas() {
         System.out.println();
         System.out.println("Bem-vindo ao Estelar: A Grande Fuga!");
-        System.out.println("Estelar: A Grande Fuga eh um novo jogo de aventura, incrivelmente legal. Fuja enquanto há tempo!");
+        System.out.println(
+                "Estelar: A Grande Fuga eh um novo jogo de aventura, incrivelmente legal. Fuja enquanto há tempo!");
         System.out.println("Digite 'ajuda' se voce precisar de ajuda.");
         System.out.println();
 
@@ -269,6 +274,7 @@ public class Jogo {
                 break;
             case "ir":
                 irParaAmbiente(comando);
+                querSair = terminado;
                 break;
             case "sair":
                 querSair = sair(comando);
@@ -286,45 +292,49 @@ public class Jogo {
 
         return querSair;
     }
-    
-    private void realizarTarefa(){
-        if(ambienteAtual instanceof Corredor){ //os corredores nunca possuem tarefas, logo, se o jogador selecionar a palavra de comando "realizar" estando em um corredor, a seguinte mensagem aparecerá:
+
+    private void realizarTarefa() {
+        if (ambienteAtual instanceof Corredor) { // os corredores nunca possuem tarefas, logo, se o jogador selecionar a
+                                                 // palavra de comando "realizar" estando em um corredor, a seguinte
+                                                 // mensagem aparecerá:
             System.out.println("Não há tarefas nos corredores!");
-        }else if(!ambienteAtual.getFoiSorteado()){
+        } else if (!ambienteAtual.getFoiSorteado()) {
             System.out.println("Não há tarefa nesta sala!");
-        }else{
-            Sala salaAtual = (Sala)ambienteAtual;
+        } else {
+            Sala salaAtual = (Sala) ambienteAtual;
             System.out.println("Voce possui uma tarefa neste ambiente!");
-            System.out.println("Ao realizar essa tarefa voce coletará o item: " + salaAtual.getNomeItem());
-            System.out.println("A tarefa é o seguinte, voce terá que responder corretamente a seguinte questão: ");
+            System.out.println("Ao realizar essa tarefa voce coletara o item: " + salaAtual.getNomeItem());
+            System.out.println("A tarefa eh o seguinte, voce tera que responder corretamente a seguinte questao: ");
             Questao tarefa = sortearQuestao();
             System.out.println(tarefa.getPergunta());
-            String respostaTarefa = entrada.nextLine();
-            if(tarefa.acertou(respostaTarefa)){
+            String respostaTarefa = entrada.nextLine();// resposta do usuario
+            if (tarefa.acertou(respostaTarefa)) {
                 System.out.println("Parabens voce acertou! Receba o item " + salaAtual.getNomeItem());
-                ambienteAtual.setFoiSorteado(false); //isso serve para que, quando o jogador retornar a este ambiente, sua tarefa não estará mais disponível
-            }else{
+                ambienteAtual.setFoiSorteado(false);// isso serve para que, quando o jogador retornar a este ambiente,
+                                                    // sua tarefa não estará mais disponível
+            } else {
                 System.out.println("Voce perdeu, a resposta esta incorreta!");
                 acabarJogo(true);
             }
         }
     }
 
-    private void acabarJogo(boolean finalizar){
+    private void acabarJogo(boolean finalizar) {
         this.terminado = finalizar;
     }
 
-    private Questao sortearQuestao(){
+    private Questao sortearQuestao() {
         Random questaoAleatoria = new Random();
-        int numeroAleatorio = questaoAleatoria.nextInt(listaDeQuestoes.size()-1);
-        System.out.println(numeroAleatorio);
-        Questao questao = listaDeQuestoes.get(numeroAleatorio); //variavel temporaria do tipo Questao
-        removerQuestao(numeroAleatorio); //garante que não teremos questoes repetidas durante a execucao do jogo
-        return questao;    
+        int numeroAleatorio = questaoAleatoria.nextInt(listaDeQuestoes.size() - 1);
+        Questao questao = listaDeQuestoes.get(numeroAleatorio); // variavel temporaria do tipo Questao
+        removerQuestao(numeroAleatorio); // garante que não teremos questoes repetidas durante a execucao do jogo
+        return questao;
     }
-    private void removerQuestao(int numeroAleatorio){
+
+    private void removerQuestao(int numeroAleatorio) {
         listaDeQuestoes.remove(numeroAleatorio);
     }
+
     private void imprimirAjuda() {
         System.out.println("Voce esta tentando fugir desses terríveis alienígenas!");
         System.out.println("Fuja enquanto há tempo!");
@@ -348,7 +358,11 @@ public class Jogo {
         }
         if (proximoAmbiente == null) {
             System.out.println("Nao ha passagem!");
-        } else {
+        }else if (proximoAmbiente instanceof Corredor) {
+            if (((Corredor)proximoAmbiente).getFoiSorteado()) { // para saber se tem guarda
+                acabarJogo(true);
+            }
+        }else {
             ambienteAtual = proximoAmbiente;
             imprimirLocalizacaoAtual();
         }
