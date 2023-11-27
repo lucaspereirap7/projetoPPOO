@@ -104,7 +104,7 @@ public class Jogo {
         // retirar esse for depois
         for (Corredor a : listaDeCorredores) {
             if (a.getFoiSorteado()) {
-                System.out.println("Foi sorteado o corredor: " + a.getDescricao());
+                System.out.println("Foi sorteado o corredor e que tem guarda: " + a.getDescricao());
             }
         }
 
@@ -286,6 +286,14 @@ public class Jogo {
                 realizarTarefa();
                 querSair = terminado;
                 break;
+            case "espiar":
+                if (comando.temSegundaPalavra()) {
+                    String direcao = comando.getSegundaPalavra();
+                    verificarAlienigenasAmbiente(direcao);
+                } else {
+                    System.out.println("Espiar para onde?");
+                }
+
             default:
                 break;
         }
@@ -316,6 +324,21 @@ public class Jogo {
                 System.out.println("Voce perdeu, a resposta esta incorreta!");
                 acabarJogo(true);
             }
+        }
+    }
+
+    // Método criado para verificar se tem alienigena no ambiente
+    private void verificarAlienigenasAmbiente(String direcao) {
+        // Verifica se o ambiente em que o usuário a entrar é um corredor..
+        if (ambienteAtual.getAmbiente(direcao) instanceof Corredor) {
+            // Verifica se o ambiente em que o usuário vai entrar possuem alienigina.
+            if (((Corredor) ambienteAtual.getAmbiente(direcao)).getFoiSorteado()) {
+                System.out.println("Possuem alienigena no ambiente, cuidado!");
+            } else {
+                System.out.println("Tudo tranquilo, não possuem alienígena no ambiente, pode seguir em frente!");
+            }
+        } else {
+            System.out.println("Zero perigos por aqui...");
         }
     }
 
@@ -358,11 +381,11 @@ public class Jogo {
         }
         if (proximoAmbiente == null) {
             System.out.println("Nao ha passagem!");
-        }else if (proximoAmbiente instanceof Corredor) {
-            if (((Corredor)proximoAmbiente).getFoiSorteado()) { // para saber se tem guarda
+        } else if (proximoAmbiente instanceof Corredor) {
+            if (((Corredor) proximoAmbiente).getFoiSorteado()) { // para saber se tem guarda
                 acabarJogo(true);
             }
-        }else {
+        } else {
             ambienteAtual = proximoAmbiente;
             imprimirLocalizacaoAtual();
         }
