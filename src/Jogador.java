@@ -18,7 +18,5 @@ public class Jogador extends Personagem {
         return Collections.unmodifiableList(inventario);
     }
     
-    public String getNomePersonagem() {
-        return getNomePersonagem();
-    }
+    
 }

@@ -32,6 +32,13 @@ public abstract class Ambiente {
         }
         return saidasAmbiente;
     }
+
+    public boolean verificaSaida(String saida) {
+        if(saidas.containsKey(saida)){
+            return true;
+        }
+        return false;
+    }
     
     public String getDescricao() {
         return descricao;

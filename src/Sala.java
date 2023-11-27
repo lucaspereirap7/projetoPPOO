@@ -28,4 +28,8 @@ public class Sala extends Ambiente{
     public String getNomeItem(){  //no método realizarTarefa() da classe Jogo, precisamos do nome do Item. Como não há objetos do tipo Item na classe Jogo, para reduzirmos o acoplamento, pegaremos o nome do Item por meio deste método
         return item.getNomeItem();
     }
+
+    public Item getItem(){
+        return item;
+    }
 }

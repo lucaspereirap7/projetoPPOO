@@ -1,20 +1,20 @@
-Qual é o maior planeta do sistema solar?,Júpiter
-Quem escreveu "Romeu e Julieta"?,William Shakespeare
-Qual é a principal função dos pulmões no corpo humano?,Troca gasosa (respiração)
-Quem foi o primeiro presidente dos Estados Unidos?,George Washington
-Em que ano ocorreu a Revolução Industrial?,Início no século XVIII (por volta de 1760)
-Qual é o processo pelo qual as plantas produzem seu próprio alimento?,Fotossíntese
-Quem é conhecido como o "pai da psicanálise"?,Sigmund Freud
-Qual é o segundo elemento mais abundante na crosta terrestre?,Silício
-Quem pintou a Mona Lisa?,Leonardo da Vinci
-Qual é a capital do Japão?,Tóquio
-Quem foi o líder sul-africano que lutou contra o apartheid?,Nelson Mandela
-Qual é o maior oceano do mundo?,Oceano Pacífico
-Quem descobriu a lei da gravidade?,Isaac Newton
-Em que ano a Primeira Guerra Mundial começou?,1914
-Qual é o animal terrestre mais rápido?,Guepardo
-Quem escreveu "Hamlet"?,William Shakespeare
-Qual é o processo pelo qual a água se transforma em vapor?,Evaporação
-Quem foi o primeiro ser humano a viajar para o espaço?,Yuri Gagarin
-Qual é a capital da Austrália?,Camberra
-Quem é o autor de "Cem Anos de Solidão"?,Gabriel García Márquez
+Qual é o maior planeta do sistema solar?,1
+Quem escreveu "Romeu e Julieta"?,1
+Qual é a principal função dos pulmões no corpo humano?,1
+Quem foi o primeiro presidente dos Estados Unidos?,1
+Em que ano ocorreu a Revolução Industrial?,1
+Qual é o processo pelo qual as plantas produzem seu próprio alimento?,1
+Quem é conhecido como o "pai da psicanálise"?,1
+Qual é o segundo elemento mais abundante na crosta terrestre?,1
+Quem pintou a Mona Lisa?,1
+Qual é a capital do Japão?,1
+Quem foi o líder sul-africano que lutou contra o apartheid?,1
+Qual é o maior oceano do mundo?,1
+Quem descobriu a lei da gravidade?,1
+Em que ano a Primeira Guerra Mundial começou?,1
+Qual é o animal terrestre mais rápido?,1
+Quem escreveu "Hamlet"?,1
+Qual é o processo pelo qual a água se transforma em vapor?,1
+Quem foi o primeiro ser humano a viajar para o espaço?,1
+Qual é a capital da Austrália?,1
+Quem é o autor de "Cem Anos de Solidão"?,1

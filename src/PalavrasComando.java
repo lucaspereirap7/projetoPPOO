@@ -14,7 +14,7 @@ public class PalavrasComando
     // adicionar metodo getComando()
     // um vetor constante que guarda todas as palavras de comandos validas
     private static final String[] comandosValidos = {
-        "ir", "sair", "ajuda", "observar", "realizar", "espiar"
+        "ir", "sair", "ajuda", "observar", "realizar", "espiar", "inventario", "mininave"
     };
 
     /**
