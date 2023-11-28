@@ -22,7 +22,7 @@ public class Jogo {
     public Jogo() {
         terminado = false; //a variável "terminado" determina quando o programa encerrará. como o jogo está começando, ela é inicializa com false
         
-        segundos = 10; //quantos segundos o jogador tera para ganhar
+        segundos = 300; //quantos segundos o jogador tera para ganhar
         timer = new Timer();
 
         analisador = new Analisador(); //criando um objeto analisador
