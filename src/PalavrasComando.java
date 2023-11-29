@@ -1,30 +1,36 @@
 /**
- * Esta classe eh parte da aplicacao "World of Zuul".
- * "World of Zuul" eh um jogo de aventura muito simples, baseado em texto.  
+ * A classe PalavrasComando é responsável por armazenar e verificar palavras de comando válidas.
+ * Contém um vetor constante de palavras de comando e métodos para obter a lista de comandos
+ * e verificar se uma dada string é uma palavra de comando válida.
  * 
- * Essa classe guarda uma enumeracao de todos os comandos conhecidos do
- * jogo. Ela eh usada no reconhecimento de comandos como eles sao digitados.
- *
- * @author  Michael Kölling and David J. Barnes (traduzido por Julio Cesar Alves)
- * @version 2011.07.31 (2016.02.01)
+ * Exemplos de comandos: "ir", "sair", "ajuda", "observar", "realizar", "espiar", "inventario", "mininave".
+ * 
+ * @author Eduardo Ruan Guimaraes Fonseca, Lucas de Oliveira Pereira, 
+ *         Matheus de Paula Megale, Renan Augusto da Silva
+ * @version 29/11/2023
  */
 
 public class PalavrasComando
 {
-    // adicionar metodo getComando()
-    // um vetor constante que guarda todas as palavras de comandos validas
+    /** Um vetor constante que guarda todas as palavras de comandos válidas. */
     private static final String[] comandosValidos = {
         "ir", "sair", "ajuda", "observar", "realizar", "espiar", "inventario", "mininave"
     };
 
     /**
-     * Construtor - inicializa as palavras de comando.
+     * Construtor padrão da classe PalavrasComando.
+     * Inicializa as palavras de comando (não há ações específicas neste momento).
      */
     public PalavrasComando()
     {
         // nada a fazer no momento...
     }
 
+    /**
+     * Obtém uma string contendo todos os comandos válidos separados por espaços.
+     *
+     * @return Uma string contendo todos os comandos válidos.
+     */
     public String getComandos(){
         String comandos = "";
         for(String comando : comandosValidos){
@@ -34,9 +40,10 @@ public class PalavrasComando
     }
 
     /**
-     * Verifica se uma dada String eh uma palavra de comando valida. 
-     * @return true se a string dada eh um comando valido,
-     * false se nao eh.
+     * Verifica se uma dada string é uma palavra de comando válida.
+     *
+     * @param umaString A string a ser verificada como comando válido.
+     * @return true se a string fornecida é um comando válido, false se não é.
      */
     public boolean ehComando(String umaString)
     {
